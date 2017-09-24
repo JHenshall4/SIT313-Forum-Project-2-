@@ -199,3 +199,34 @@
    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
    See the License for the specific language governing permissions and
    limitations under the License.
+
+
+//////////////////////////////REFERENCED MATERIALS -- ADDED BY JAMES HENSHALL //////////////////////////////////////////////////
+All images used for Icons were taken from Flaticon, made by Freepik
+https://www.flaticon.com/         http://www.freepik.com/
+
+The following code snipits were taken from the respective locations and heavily modified to suit my needs:
+
+Line 125 - 136 index.js (Limiting characters in editable content)
+Retrieved from: https://stackoverflow.com/questions/2867479/limiting-number-of-characters-in-a-contenteditable-div
+Modified to match my elements and meet my restriction requirements.
+
+Line 722 - 757 index.js (Convering bbCode to HTML)
+Retrieved from: https://stackoverflow.com/questions/9210680/convert-bbcode-to-html-using-javascript-jquery
+                http://jsfiddle.net/mplungjan/m8zLX/
+Modified heavily in order to parse user in-put text into HTML. Added many extra expressions to protect HTML code being injected from user inputs.
+
+
+Resources used for learning:
+
+Apache Cordova documentation:       https://cordova.apache.org/docs/en/latest/
+W3Schools (PHP, Javascript/Jquery): https://www.w3schools.com/
+PHP.net   (PHP) :                   http://php.net/
+
+Resources used for Inspiration:
+Discord - https://discordapp.com/
+Adobe - https://forums.adobe.com/welcome
+
+
+HOSTING: Hosting of server database and files was provided for free by 000webhost.com
+This is due to Deakins webspace not allowing my application to call PHP even after applying appropriate headers.
