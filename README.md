@@ -28,3 +28,20 @@ Changelog:
 Clicking the pen icon attached to a users signature means you can edit the post
 Clicking the (blank) display picture on the account page lets you choose a new display picture
 Clicking the box to the right of the display picture allows you to change your signature
+
+
+
+GITHUB can be found: https://github.com/JHenshall4/SIT313-Forum-Project-2-
+
+All major files can be found in the 'Assignment 1/www' directory.
+index.js includes all of my written javascript
+index.html include all of my written html
+index.css includes all of my written css
+
+Assignment1/www/Data/public_html > includes all of my PHP files used on the file hosting I use.
+IF urgently required, please contact me at: jimmyh543@hotmail.com for access to my web hosting.
+External file/database hosting was only used due to being unable to execute php from Deakins webspace, even with appropriate headers.
+
+
+
+
