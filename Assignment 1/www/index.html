@@ -1,0 +1,266 @@
+﻿<!DOCTYPE html>
+<html>
+    <head>
+    <!--
+        Customize the content security policy in the meta tag below as needed. Add 'unsafe-inline' to default-src to enable inline JavaScript.
+        For details, see http://go.microsoft.com/fwlink/?LinkID=617521
+    -->
+        <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com https://deakin-assignment.000webhostapp.com https://www.w3schools.com/ 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *">
+        
+        <meta name="format-detection" content="telephone=no">
+        <meta name="msapplication-tap-highlight" content="no">
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+        <meta charset='utf-8'> <!-- Character set which is needed for emojis (Should be default anyway)
+                                   Emoji unicode should look something like this "&#x1F601"
+                                   We will need to create javascript which is able to extract this from an emoji when storing to the database
+                                   and conver this into the appropriate emoji when displaying it to the user. -->
+
+        <link rel="stylesheet" type="text/css" href="css/index.css">
+
+
+        <title>SIT313 - Assignment 1 (Forum)</title>
+    </head>
+    <body>
+
+        <!-- Menus -->
+        <div class="Uppermenu">
+            <img src="images/logo.png" class="title_img" id="logo" onclick="legal()">
+        </div>
+
+        <div class="Lowermenu"> <!-- Using divs instead of buttons because they're easier to manage and look nicer -- Will use text instead of images like most app navigation
+                                    Break is included to center buttons vertically. Was having issues with the CSS but this did the trick.-->
+            <div id="main_btn" class="testing" onclick="mainPage()"><br />Main</div>
+            <div id="search_btn" class="testing" onclick="searchPage()"><br />Search</div>
+            <div id="account_btn" class="testing" onclick="accountPage()"><br />Account</div>
+            <div id="trending_btn" class="testing" onclick="trendingPage()"><br />Trending</div>
+        </div>
+
+<!--------------------------------------------------------------------------------------------------------------------------------------------------------------->
+        <!-- Board Index-->
+        <div class="app" id="boardIndex">
+            <!-- Header for current page-->
+            <div class="header"><h1>FORUM INDEX</h1>
+            </div>
+            <!-- Board index-->
+            <div class="IndexContainer" id="test">
+                <ul id="fourmIndex">
+                    <!-- Obtained all free use images and icons made by: http://www.freepik.com from http://www.flaticon.com -- which is licensed by http://creativecommons.org/licenses/by/3.0/-->
+                    <li><img src="images/outdoors.png" class="forumIndex_img" id="Outdoors" onclick="Forum()">
+                    <li><img src="images/kids.png" class="forumIndex_img" id="Kids" onclick="Forum()">
+                    <li><img src="images/science.png" class="forumIndex_img" id="Science" onclick="Forum()">
+                    <li><img src="images/household.png" class="forumIndex_img" id="Household" onclick="Forum()">
+                    <li><img src="images/hobbies.png" class="forumIndex_img" id="Hobbies" onclick="Forum()">
+                    <li><img src="images/foodanddrink.png" class="forumIndex_img" id="FoodandDrink" onclick="Forum()">
+                    <li><img src="images/IT.png" class="forumIndex_img" id="Technology" onclick="Forum()">
+                    <li><img src="images/fix-it.png" class="forumIndex_img" id="FixIt" onclick="Forum()">
+                    <li><img src="images/gifts.png" class="forumIndex_img" id="Gifts" onclick="Forum()">
+                    <li><img src="images/misc.png" class="forumIndex_img" id="Miscellaneous" onclick="Forum()">
+</ul>
+            </div>
+        </div>
+
+<!--------------------------------------------------------------------------------------------------------------------------------------------------------------->
+        <!-- Account Page -->
+        <!-- Putting this content inside of a form caused various errors when trying to retrieve our data so workaround javascript has been implemented on button press
+            TO DO: Run javascript when user hits enter to create a more form-like experience.-->
+            <div class="app" id="account">
+                <div class="header">
+                    <h1>ACCOUNT MANAGEMENT</h1>
+                </div>
+                <div class="LoginContainer" id="LoginContainer">
+                    <br /><br />
+                    Username: <input type="text" id="uname" /><br /><br />
+                    Password: &nbsp;&nbsp;<input type="password" id="pword" /> <br /><br />
+                    <div id="login_Button" class="login_Button" onClick="login()">Login</div>
+                </div>
+            </div>
+
+        <!-- account_loggedin-->
+        <div class="app" id="account_loggedin">
+            <div class="header">
+                <h1><a id="display_userName"></a></h1>
+            </div>       
+            <div class="AccountContainer" id="AccountContainer">
+                <div class="profilePicture_Account" id="profilePicture_Account"></div> <!-- update via JS to image stored in DB for user -->
+                <div class="recent_posts_1">Created Threads</div>
+                <div id="account_recentPosts" class="account_recentPosts"></div> <!-- To do-->
+                <div class="account_signature" id="account_signature" contenteditable="true"></div> <!-- To do-->
+                <div class="updateSignature" id="updateSignature">Update Signature</div>
+                <div class="logout" id="logout">Logout</div> <!-- To do-->
+            </div>
+        </div>
+
+<!--------------------------------------------------------------------------------------------------------------------------------------------------------------->
+        <!-- Search Page -->
+        <div class="app" id="search">
+            <div class="header">
+                <h1>SEARCH</h1>
+            </div>
+            <!-- Search bar -->
+            <div class="SearchContainer" id="SearchContainer">
+                <br /><br />
+                <input type="text" class="searchbar" id="searchbar" placeholder="Search by post, author or date:" onkeyup="searchFunction()" />
+                <br /><br />
+            </div>
+                <!-- Placeholder for search results-->
+                <div class="SearchResults" id="SearchResults">
+                    <h3>Search Results</h3>
+                </div>
+            
+        </div>
+<!--------------------------------------------------------------------------------------------------------------------------------------------------------------->
+        <!-- Trending-->
+        <div class="app" id="trending">
+            <div class="header">
+                <h1>Trending topics</h1>
+            </div>
+            <div class="TrendingContainer" id="TrendingContainer">
+
+                <!-- Placeholder for trending topics-->
+                <div class="trendingResults" id="trendingResults">
+                    <p></p>
+
+                </div>
+            </div>
+        </div>
+<!--------------------------------------------------------------------------------------------------------------------------------------------------------------->
+        <!-- Threads -->
+        <div class="app" id="threads">
+            <br /><br />
+            <div class="thread_header">
+                <p id="topic_title" class="topic_title"></p>
+            </div>
+            <div class="ThreadContainer" id="ThreadContainer">
+                <div class="ThreadOP" id="ThreadOP">
+                </div>
+                <div class="comments" id="comments"></div>
+                <div class="postReply" id="postReply">Post Reply</div>
+            </div>
+        </div>
+
+<!--------------------------------------------------------------------------------------------------------------------------------------------------------------->
+        <!-- Topics -->
+        <div class="app" id="topic">
+            <!-- Header for current page-->
+            <div class="header"><h1 id="topicHeader"></h1>
+            <div class="newThread_btn" id="newThread_btn">Create Thread</div>
+            </div>
+            <!-- Board index-->
+            <div class="TopicList" id="TopicList">
+            </div>
+        </div>
+
+<!--------------------------------------------------------------------------------------------------------------------------------------------------------------->
+        <!-- Create Thread -->
+        <div class="app" id="newThread">
+            <!-- Header for current page-->
+            <div class="header">
+                <textarea type="text" class="newTitle" contenteditable="true" id="newThreadTitle" max="10" placeholder="New Thread Title" maxlength="60" rows="2"></textarea>
+                <!--<a id="newThreadCategory" class="newThreadCategory"></a>-->
+            </div>
+            <!-- Post contents which enables rich text format -->
+            <div class="richTextPost" id="richTextPost" contenteditable="true"></div>
+            <div class="toolbarContainer">
+                <!-- Toolbar options. We require a button for both on and off to indicate to the user that the option is enabled.-->
+
+                <!-- Bold -->
+                <div class="tool_Bold" id="tool_Bold" >B</div>
+
+                <!-- Underline -->
+                <div class="tool_Underline" id="tool_Underline">U</div>
+
+                <!-- Italics -->
+                <div class="tool_Italics" id="tool_Italics">I</div>
+
+                <!-- Bullets -->
+                <div class="tool_Bullets" id="tool_Bullets">-</div>
+
+                <!-- Heading -->
+                <div class="tool_Heading" id="tool_Heading">H</div>
+
+                <!-- Image -->
+                <div class="tool_Image" id="tool_Image">Img</div>
+
+                <!-- We need to be able to add the ability for the user to add a file from local storage... We will organise this later.-->
+            </div>
+            <div class="emojiContainer">
+                <div class="smile_tool" id="smile_tool">&#x1F60A</div>
+                <div class="cry_tool" id="cry_tool">&#x1F622</div>
+                <div class="thinking_tool" id="thinking_tool">&#x1F914</div>
+                <div class="angry_tool" id="angry_tool">&#x1F621</div>
+                <div class="screaming_tool" id="screaming_tool">&#x1F631</div>
+            </div>
+            <div class="postThread_btn" id="postThread_btn">POST</div>
+            </div>
+
+<!--------------------------------------------------------------------------------------------------------------------------------------------------------------->
+        <!-- Create Reply -- Reusing code from Create Thread. -->
+        <div class="app" id="newReply">
+            <!-- Header for current page-->
+            <div class="header">
+                <p id="topic_title_reply" class="topic_title"></p>
+                <!--<a id="newThreadCategory" class="newThreadCategory"></a>-->
+            </div>
+            <!-- Post contents which enables rich text format -->
+            <div class="richTextPost" id="richTextPostReply" contenteditable="true"></div>
+            <div class="toolbarContainer">
+                <!-- Toolbar options. We require a button for both on and off to indicate to the user that the option is enabled.-->
+                <!-- Bold -->
+                <div class="tool_Bold" id="tool_BoldR">B</div>
+
+                <!-- Underline -->
+                <div class="tool_Underline" id="tool_UnderlineR">U</div>
+
+                <!-- Italics -->
+                <div class="tool_Italics" id="tool_ItalicsR">I</div>
+
+                <!-- Bullets -->
+                <div class="tool_Bullets" id="tool_BulletsR">-</div>
+
+                <!-- Heading -->
+                <div class="tool_Heading" id="tool_HeadingR">H</div>
+
+                <!-- Image -->
+                <div class="tool_Image" id="tool_ImageR">Img</div>
+
+                <!-- We need to be able to add the ability for the user to add a file from local storage... We will organise this later.-->
+            </div>
+            <div class="emojiContainer">
+                <div class="smile_tool" id="smile_toolR">&#x1F60A</div>
+                <div class="cry_tool" id="cry_toolR">&#x1F622</div>
+                <div class="thinking_tool" id="thinking_toolR">&#x1F914</div>
+                <div class="angry_tool" id="angry_toolR">&#x1F621</div>
+                <div class="screaming_tool" id="screaming_toolR">&#x1F631</div>
+            </div>
+            <div class="postThread_btn" id="postReply_btn">POST</div>
+        </div>
+
+<!--------------------------------------------------------------------------------------------------------------------------------------------------------------->
+        <!-- Legal -->
+        <div class="app" id="legal">
+            <!-- Header for current page-->
+            <div class="header">
+                <h1 id="topicHeader">LEGAL</h1>
+            </div>
+            <!-- Board index-->
+            <div class="TopicList" id="TopicList">
+                <p style="color: #FFFFFF;">All images were taken from Flaticon and made by Freepik and modified by myself (added text)
+                Below are the references for ALL image content:
+                <div style="color:#FFFFFF;">Icons made by <a href="http://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>
+</p>
+
+            </div>
+        </div>
+
+
+<!--------------------------------------------------------------------------------------------------------------------------------------------------------------->
+        <script type="text/javascript" src="cordova.js"></script>
+        <script type="text/javascript" src="scripts/platformOverrides.js"></script>
+        <script type="text/javascript" src="scripts/index.js"></script>
+        <!-- Adding scripts from jquery and jquery mobile   01/08/17-->
+        <script src="scripts/jquery-2.2.4.min.js"></script>
+        <script src="scripts/jquery.mobile-1.4.5.min.js"></script>
+        
+       
+    </body>
+</html>
