@@ -216,6 +216,14 @@ Retrieved from: https://stackoverflow.com/questions/9210680/convert-bbcode-to-ht
                 http://jsfiddle.net/mplungjan/m8zLX/
 Modified heavily in order to parse user in-put text into HTML. Added many extra expressions to protect HTML code being injected from user inputs.
 
+Packages / Plugins used:
+Jquery: (Version 2.2.4) https://jquery.com/download/
+Jquery Mobile: (Version 1.4.5) https://jquerymobile.com/download/
+Cordova File Transfer: https://cordova.apache.org/docs/en/latest/reference/cordova-plugin-file-transfer/
+Cordova File: https://cordova.apache.org/docs/en/latest/reference/cordova-plugin-file/
+Cordova Camera: https://cordova.apache.org/docs/en/latest/reference/cordova-plugin-camera/
+
+
 
 Resources used for learning:
 
